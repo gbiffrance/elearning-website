@@ -165,8 +165,15 @@ global $system_courses, $_custom_css, $db;
 
 	?>
 	<a title="Page d'accueil de ATutor" href="http://lully.snv.jussieu.fr/ATutor/" target="_blank">
-	<img alt="Banniere ATutor" src="<?php echo $this->base_path; ?>themes/GBIF_Theme-2.0.2/images/header_gbif_site.png" />
-</a>
+
+	<!-- Image de la banniere -->
+	<?php if (isset($_SESSION['is_guest']) && $_SESSION['is_guest']!='1') {?>
+		<a title="Page d'accueil de ATutor" href="<?php echo $this->base_path; ?>bounce.php" >
+	<?php } else { ?>
+		<a title="Page d'accueil de ATutor" href="<?php echo $this->base_path; ?>browse.php" >
+	<?php } ?>
+		<img alt="Banniere ATutor" src="<?php echo $this->base_path; ?>themes/GBIF_Theme-2.0.2/images/header_gbif_site.png" />
+	</a>
 	<!-- section title -->
 
 	<!-- Course Title -->
@@ -202,6 +209,7 @@ global $system_courses, $_custom_css, $db;
 <div class="logoutbar">
 
 	<div>
+		<a href="<?php echo $this->base_path; ?>browse.php">Parcourir les cours </a> |
 		<?php if (isset($_SESSION['valid_user']) && $_SESSION['valid_user']): ?>
 		<?php $path_parts = explode("/", $this->current_top_level_page); 
 		      $last_path_part = $path_parts[sizeof($path_parts) - 1];
